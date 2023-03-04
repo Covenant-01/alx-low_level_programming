@@ -1,34 +1,35 @@
 #include "main.h"
-/**
- *rot13 - encode strings using rot13.
- *@s: pointer to string.
- *
- *Return: pointer to encoded string.
- */
-char *rot13(char *s)
-{
-	int stringCount, rotation;
-	char r1[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-		     'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
-		     'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
-		     'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
-		     'Z'};
-	char r2[] = {'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
-		     'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-		     'm', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
-		     'Z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
-		     'M'};
 
-	for (stringCount = 0; s[stringCount] != '\0'; stringCount++)
+/**
+ * print_number -function that prints an integer.
+ * @n: input integer.
+ * Return: no return.
+ */
+void print_number(int n)
+{
+	unsigned int m, d, count;
+
+	if (n < 0)
 	{
-		for (rotation = 0; rotation < 53; rotation++)
-		{
-			if (r1[rotation] == s[stringCount])
-			{
-				s[stringCount] = r2[rotation];
-				break;
-			}
-		}
+		_putchar(45);
+		m = n * -1;
 	}
-	return (s);
+	else
+	{
+		m = n;
+	}
+
+	d = m;
+	count = 1;
+
+	while (d > 9)
+	{
+		d /= 10;
+		count *= 10;
+	}
+
+	for (; count >= 1; count /= 10)
+	{
+		_putchar(((m / count) % 10) + 48);
+	}
 }
